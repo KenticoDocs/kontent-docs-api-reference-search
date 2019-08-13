@@ -1,0 +1,30 @@
+{
+  "name": "cloud-docs-api-reference-search",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build && func extensions install",
+    "start:host": "func start",
+    "start": "npm run start:host & npm run watch",
+    "build:production": "npm run prestart && npm prune --production",
+    "test": "jest",
+    "tslint": "tslint --project tsconfig.json"
+  },
+  "dependencies": {
+    "axios": "0.19.0",
+    "cloud-docs-shared-code": "3.2.5",
+    "node-html-parser": "1.1.16",
+    "striptags": "3.1.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "1.0.2-beta2",
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.5",
+    "jest": "24.8.0",
+    "ts-jest": "24.0.2",
+    "tslint": "5.18.0",
+    "typescript": "3.3.3"
+  }
+}
