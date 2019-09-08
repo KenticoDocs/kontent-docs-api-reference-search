@@ -1,13 +1,13 @@
-| [master](https://github.com/Kentico/kentico-cloud-docs-search/tree/master) | [develop](https://github.com/Kentico/kentico-cloud-docs-search/tree/develop) |
+| [master](https://github.com/KenticoDocs/cloud-docs-api-reference-search/tree/master) | [develop](https://github.com/KenticoDocs/cloud-docs-api-reference-search/tree/develop) |
 |:---:|:---:|
-| [![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-tutorial-search.svg?branch=master)](https://travis-ci.com/KenticoDocs/cloud-docs-tutorial-search/branches) [![codebeat badge](https://codebeat.co/badges/9d7be753-0c7d-4e00-b073-51fad504a4ae)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-tutorial-search-master) | [![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-tutorial-search.svg?branch=develop)](https://travis-ci.com/KenticoDocs/cloud-docs-tutorial-search/branches) [![codebeat badge](https://codebeat.co/badges/aa7e8e01-8e31-45fd-9d9c-3bfa5baabd09)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-tutorial-search-develop) |
+| [![Build Status](https://github.com/KenticoDocs/cloud-docs-api-reference-search.svg?branch=master)](https://github.com/KenticoDocs/cloud-docs-api-reference-search/branches) [![codebeat badge](https://codebeat.co/badges/dd1651b4-8d34-43c1-895b-e449caaa44f6)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-api-reference-search-master) | [![Build Status](https://github.com/KenticoDocs/cloud-docs-api-reference-search.svg?branch=develop)](https://github.com/KenticoDocs/cloud-docs-api-reference-search/branches) [![codebeat badge](https://codebeat.co/badges/ebd03122-bed1-4281-8e4e-8f601962e810)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-api-reference-search-develop-55d63c37-b306-4924-944e-aac82cd77e5f) |
 
 
-# Kentico Cloud Documentation - API reference search
+# Kentico Cloud Documentation - API Reference Search
 Backend service for Kentico Cloud [documentation portal](https://docs.kenticocloud.com/), which utilizes Kentico Cloud as a source of its content.
 
 In order to provide an exquisite search experience, this service is responsible for indexing content of the documentation portal's API reference.
-It responds to events created by the blob storage, when the [Reference Preprocessor](https://github.com/KenticoDocs/cloud-docs-reference-preprocessor) created a blob with preprocessed Kentico Cloud. The API reference service processes the data and stores the content ready to index on [Algolia](https://www.algolia.com/) in an [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/).
+It responds to events triggered by the blob storage, after the [Reference Preprocessor](https://github.com/KenticoDocs/cloud-docs-reference-preprocessor) creates a blob with the preprocessed data. The API reference service processes the data and stores the content ready to index on [Algolia](https://www.algolia.com/) in an [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/).
 
 ## Overview
 1. This project is a TypeScript Azure Functions application.
@@ -34,8 +34,8 @@ It responds to events created by the blob storage, when the [Reference Preproces
 #### Required Keys
 * `Azure.StorageKey` - Azure Storage key
 * `Azure.StorageAccountName` - Azure Storage account name
-* `Azure.ContainerName` - Azure Storage container namr
-* `CleanIndexUrl` - URL of the [`kcd-clear-index` Azure function](https://github.com/KenticoDocs/cloud-docs-index-sync)
+* `Azure.ContainerName` - Azure Storage container name
+* `Azure.ClearIndexUrl` - URL of the [`kcd-clear-index` Azure function](https://github.com/KenticoDocs/cloud-docs-index-sync)
 
 ## Testing
 * Run `yarn run test` in the terminal.

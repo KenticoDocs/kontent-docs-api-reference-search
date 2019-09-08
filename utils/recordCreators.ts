@@ -7,7 +7,7 @@ import {
     IZapiSpecification,
 } from 'cloud-docs-shared-code';
 import * as striptags from 'striptags';
-import { IPartialRecord } from '../kcd-api-reference-update/ApiReferenceProcessor';
+import { IPartialRecord } from './ApiReferenceProcessor';
 import { getContentOfItem } from './helpers';
 
 type CommonTypesWithDescription = IPathOperation | ISecurityScheme | ICategory | IZapiSpecification;
@@ -23,7 +23,7 @@ export const createGenericDescriptionRecord = (item: ICategory | IPathOperation 
     });
 
 export const createGenericRecordFromDescriptionContent = (
-    {codename, description, id}: CommonTypesWithDescription,
+    { codename, description, id }: CommonTypesWithDescription,
     heading: string,
 ): IPartialRecord => ({
     codename,
@@ -32,9 +32,7 @@ export const createGenericRecordFromDescriptionContent = (
     objectID: id,
 });
 
-export const createSpecificationDescriptionRecord = (
-    {codename, title}: IZapiSpecification,
-) =>
+export const createSpecificationDescriptionRecord = ({ codename, title }: IZapiSpecification) =>
     (descriptionItem: ISystemAttributes): IPartialRecord => ({
         codename,
         content: getContentOfItem(descriptionItem),
@@ -44,7 +42,7 @@ export const createSpecificationDescriptionRecord = (
 
 export const createResponseDescriptionContentRecord = (
     response: IResponse,
-    {codename, name}: IPathOperation,
+    { codename, name }: IPathOperation,
 ): IPartialRecord => ({
     codename,
     content: `${response.httpStatus[0]} ${striptags(response.description)}`,

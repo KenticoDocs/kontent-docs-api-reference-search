@@ -1,33 +1,33 @@
 import { ReferenceOperation } from 'cloud-docs-shared-code/reference/preprocessedModels';
-import { getBlobId } from './blobManager';
+import { getBlobName } from './blobManager';
 
-describe('getBlobId', () => {
-    it('returns correct blob id for initialize operation', () => {
-        const codename = 'content_management_api';
+describe('getBlobName', () => {
+    it('returns correct blob name for initialize operation', () => {
+        const id = '12345-67890';
         const operation = ReferenceOperation.Initialize;
-        const expectedResult = codename;
+        const expectedResult = id;
 
-        const actualResult = getBlobId(codename, operation);
+        const actualResult = getBlobName(id, operation);
 
         expect(actualResult).toEqual(expectedResult);
     });
 
-    it('returns correct blob id for update operation', () => {
-        const codename = 'content_management_api';
+    it('returns correct blob name for update operation', () => {
+        const id = '12345-67890';
         const operation = ReferenceOperation.Update;
-        const expectedResult = codename;
+        const expectedResult = id;
 
-        const actualResult = getBlobId(codename, operation);
+        const actualResult = getBlobName(id, operation);
 
         expect(actualResult).toEqual(expectedResult);
     });
 
-    it('returns correct blob id for preview operation', () => {
-        const codename = 'content_management_api';
+    it('returns correct blob name for preview operation', () => {
+        const id = '12345-67890';
         const operation = ReferenceOperation.Preview;
-        const expectedResult = `${codename}-preview.json`;
+        const expectedResult = `${id}-preview.json`;
 
-        const actualResult = getBlobId(codename, operation);
+        const actualResult = getBlobName(id, operation);
 
         expect(actualResult).toEqual(expectedResult);
     });
@@ -36,6 +36,6 @@ describe('getBlobId', () => {
         const codename = 'content_management_api';
         const operation = 'Unknown';
 
-        expect(() => getBlobId(codename, operation as ReferenceOperation)).toThrow();
+        expect(() => getBlobName(codename, operation as ReferenceOperation)).toThrow();
     });
 });

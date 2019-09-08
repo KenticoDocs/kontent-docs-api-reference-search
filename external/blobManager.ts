@@ -12,13 +12,12 @@ export const storeReferenceDataToBlobStorage = async (
     operation: ReferenceOperation,
 ): Promise<void> => {
     const containerUrl = getContainerUrl();
-    const blobId = getBlobId(dataBlob.codename, operation);
-    const blobURL = BlobStorage.BlobURL.fromContainerURL(containerUrl, blobId);
-    const blockBlobURL = BlobStorage.BlockBlobURL.fromBlobURL(blobURL);
+    const blobName = getBlobName(dataBlob.id, operation);
+    const blobURL = BlobStorage.BlockBlobURL.fromContainerURL(containerUrl, blobName);
 
     const blob = JSON.stringify(dataBlob);
 
-    await blockBlobURL.upload(
+    await blobURL.upload(
         BlobStorage.Aborter.none,
         blob,
         blob.length,
@@ -39,17 +38,17 @@ const getContainerUrl = (): ContainerURL => {
     return BlobStorage.ContainerURL.fromServiceURL(serviceUrl, Configuration.keys.azureContainerName);
 };
 
-export const getBlobId = (codename: string, operation: ReferenceOperation): string => {
+export const getBlobName = (id: string, operation: ReferenceOperation): string => {
     switch (operation) {
         case ReferenceOperation.Update:
         case ReferenceOperation.Initialize: {
-            return codename;
+            return id;
         }
         case ReferenceOperation.Preview: {
-            return `${codename}-preview.json`;
+            return `${id}-preview.json`;
         }
         default: {
-            throw Error('Invalid operation');
+            throw Error(`Invalid operation specified in the received blob: ${operation}`);
         }
     }
 };

@@ -1,7 +1,7 @@
 import {
     AzureFunction,
     Context,
-} from '@azure/functions'
+} from '@azure/functions';
 import axios from 'axios';
 import {
     Configuration,
@@ -15,7 +15,7 @@ import { storeReferenceDataToBlobStorage } from '../external/blobManager';
 import { transformPreprocessedDataToRecords } from '../utils/helpers';
 
 export interface IGenericItems {
-    [prop: string]: ISystemAttributes;
+    readonly [prop: string]: ISystemAttributes;
 }
 
 export const eventGridTrigger: AzureFunction = async (
@@ -30,15 +30,17 @@ export const eventGridTrigger: AzureFunction = async (
         Configuration.keys.azureAccountName,
         Configuration.keys.azureStorageKey,
     );
-    const initialize = blob.operation === ReferenceOperation.Initialize;
 
     if (blob.operation === ReferenceOperation.Preview) {
         return;
-    } else if (initialize) {
+    }
+
+    const initialize = blob.operation === ReferenceOperation.Initialize;
+    if (initialize) {
         await axios.get(Configuration.getClearIndexUrl(isTest, 'API'));
     }
 
     const recordsBlob = transformPreprocessedDataToRecords(blob, initialize);
 
-    await storeReferenceDataToBlobStorage(recordsBlob, blob.operation)
+    await storeReferenceDataToBlobStorage(recordsBlob, blob.operation);
 };
