@@ -8,24 +8,24 @@ import {
     ISystemAttributes,
     IZapiSpecification,
 } from 'cloud-docs-shared-code';
-import { getChildCodenamesFromRichText } from '../utils/helpers';
+import { IGenericItems } from '../kcd-api-reference-update';
+import { getChildCodenamesFromRichText } from './helpers';
 import {
     getCodeSampleItemsFromCodeSamples,
     getDescriptionItems,
-} from '../utils/itemGetters';
+} from './itemGetters';
 import {
     createGenericDescriptionRecord,
     createGenericRecordFromDescriptionContent,
     createResponseDescriptionContentRecord,
     createSpecificationDescriptionRecord,
-} from '../utils/recordCreators';
-import { IGenericItems } from './index';
+} from './recordCreators';
 
 export interface IPartialRecord {
-    codename: string;
-    content: string;
-    heading: string;
-    objectID: string;
+    readonly codename: string;
+    readonly content: string;
+    readonly heading: string;
+    readonly objectID: string;
 }
 
 export class ApiReferenceProcessor {
@@ -84,8 +84,8 @@ export class ApiReferenceProcessor {
             )
     };
 
-    private processCategories = (categoriesCodenames: string[]): IPartialRecord[] =>
-        categoriesCodenames.reduce(
+    private processCategories = (categoryCodenames: string[]): IPartialRecord[] =>
+        categoryCodenames.reduce(
             this.createCategoryRecords(),
             [] as IPartialRecord[],
         );
