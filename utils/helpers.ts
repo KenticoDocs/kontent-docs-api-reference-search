@@ -12,7 +12,7 @@ import {
     parse,
 } from 'node-html-parser';
 import * as striptags from 'striptags';
-import { IGenericItems } from '../kcd-api-reference-update';
+import { IGenericItems } from '../kcd-api-reference-search-update';
 import { ApiReferenceProcessor } from './ApiReferenceProcessor';
 
 export const getChildCodenamesFromRichText = (content: string): string[] => {

@@ -7,5 +7,5 @@
     }
   ],
   "disabled": false,
-  "scriptFile": "../dist/kcd-api-reference-update/index.js"
+  "scriptFile": "../dist/kcd-api-reference-search-update/index.js"
 }

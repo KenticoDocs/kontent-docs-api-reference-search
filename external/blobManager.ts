@@ -42,7 +42,7 @@ export const getBlobName = (id: string, operation: ReferenceOperation): string =
     switch (operation) {
         case ReferenceOperation.Update:
         case ReferenceOperation.Initialize: {
-            return id;
+            return `${id}.json`;
         }
         case ReferenceOperation.Preview: {
             return `${id}-preview.json`;
