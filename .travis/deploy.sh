@@ -9,7 +9,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 prepare_site_dir() {
     declare -r files=(
-        kcd-api-reference-update
+        kcd-api-reference-search-update
         dist
         extensions.csproj
         host.json

@@ -9,6 +9,7 @@ import {
     IBlobEventGridEvent,
     IPreprocessedData,
     ISystemAttributes,
+    IZapiSpecification,
     ReferenceOperation,
 } from 'cloud-docs-shared-code';
 import { storeReferenceDataToBlobStorage } from '../external/blobManager';
@@ -37,10 +38,17 @@ export const eventGridTrigger: AzureFunction = async (
 
     const initialize = blob.operation === ReferenceOperation.Initialize;
     if (initialize) {
-        await axios.get(Configuration.getClearIndexUrl(isTest, 'API'));
+        await clearIndex(isTest, blob);
     }
 
     const recordsBlob = transformPreprocessedDataToRecords(blob, initialize);
 
     await storeReferenceDataToBlobStorage(recordsBlob, blob.operation);
+};
+
+const clearIndex = async (isTest: boolean, blob: IPreprocessedData): Promise<void> => {
+    const clearIndexUrl = Configuration.getClearIndexUrl(isTest, 'API');
+    const apiSpecificationId = (blob.items[blob.zapiSpecificationCodename] as IZapiSpecification).id;
+
+    await axios.get(`${clearIndexUrl}&id=${apiSpecificationId}`);
 };

@@ -14,7 +14,7 @@ type CommonTypesWithDescription = IPathOperation | ISecurityScheme | ICategory |
 
 export const createGenericDescriptionRecord = (item: ICategory | IPathOperation | ISecurityScheme) =>
     (genericItem: ISystemAttributes): IPartialRecord => ({
-        codename: genericItem.codename,
+        codename: item.codename,
         content: getContentOfItem(genericItem),
         heading: item.contentType === 'zapi_security_scheme'
             ? 'Authentication'

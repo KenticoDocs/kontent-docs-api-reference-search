@@ -7,7 +7,7 @@ import {
     ISystemAttributes,
     IZapiSpecification,
 } from 'cloud-docs-shared-code';
-import { IGenericItems } from '../kcd-api-reference-update';
+import { IGenericItems } from '../kcd-api-reference-search-update';
 import { getChildCodenamesFromRichText } from './helpers';
 import {
     getCodeSampleItemsFromCodeSamples,

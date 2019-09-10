@@ -5,7 +5,7 @@ describe('getBlobName', () => {
     it('returns correct blob name for initialize operation', () => {
         const id = '12345-67890';
         const operation = ReferenceOperation.Initialize;
-        const expectedResult = id;
+        const expectedResult = `${id}.json`;
 
         const actualResult = getBlobName(id, operation);
 
@@ -15,7 +15,7 @@ describe('getBlobName', () => {
     it('returns correct blob name for update operation', () => {
         const id = '12345-67890';
         const operation = ReferenceOperation.Update;
-        const expectedResult = id;
+        const expectedResult = `${id}.json`;
 
         const actualResult = getBlobName(id, operation);
 

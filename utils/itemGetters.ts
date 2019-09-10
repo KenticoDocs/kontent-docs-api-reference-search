@@ -2,22 +2,24 @@ import {
     ICodeSamples,
     ISystemAttributes,
 } from 'cloud-docs-shared-code';
-import { IGenericItems } from '../kcd-api-reference-update';
+import { IGenericItems } from '../kcd-api-reference-search-update';
 import { getChildCodenamesFromRichText } from './helpers';
 
 export const getDescriptionItems = (description: string, allItems: IGenericItems): ISystemAttributes[] => {
     const descriptionItemCodenames = getChildCodenamesFromRichText(description);
 
-    return descriptionItemCodenames.reduce(
-        (descriptionItems, childCodename) => descriptionItems.concat(getDescriptionItem(allItems, childCodename)),
-        [] as ISystemAttributes[],
-    );
+    return descriptionItemCodenames
+        .reduce(
+            (descriptionItems, childCodename) => descriptionItems.concat(getDescriptionItem(allItems, childCodename)),
+            [] as ISystemAttributes[],
+        )
+        .filter((item) => item);
 };
 
 const getDescriptionItem = (allItems: IGenericItems, childCodename: string): ISystemAttributes[] => {
     const item = allItems[childCodename];
 
-    return (item.contentType === 'code_samples')
+    return (item && item.contentType === 'code_samples')
         ? getCodeSampleItemsFromCodeSamples(item as ICodeSamples, allItems)
         : [item];
 };
