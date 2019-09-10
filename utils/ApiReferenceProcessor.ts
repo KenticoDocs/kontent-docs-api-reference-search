@@ -4,7 +4,6 @@ import {
     IPathOperation,
     IRecord,
     IResponse,
-    ISecurityScheme,
     ISystemAttributes,
     IZapiSpecification,
 } from 'cloud-docs-shared-code';
@@ -36,7 +35,7 @@ export class ApiReferenceProcessor {
     }
 
     public processSpecification = (specification: IZapiSpecification): IRecord[] => {
-        const {title, categories, id, security, version} = specification;
+        const {title, categories, id, version} = specification;
         const specificationRecord: IPartialRecord = createGenericRecordFromDescriptionContent(
             specification,
             title + version,
@@ -46,7 +45,6 @@ export class ApiReferenceProcessor {
             .concat(
                 this.createRecordsFromSpecificationDescription(specification),
                 this.processCategories(categories),
-                this.processAuthentication(security),
             )
             .map((record) => ({
                 ...record,
@@ -54,34 +52,6 @@ export class ApiReferenceProcessor {
                 section: 'API',
                 title,
             }));
-    };
-
-    private processAuthentication = (securityCodenames: string[]): IPartialRecord[] =>
-        securityCodenames
-            .reduce(
-                this.concatAuthenticationRecords(),
-                [] as IPartialRecord[],
-            );
-
-    private concatAuthenticationRecords = () =>
-        (authenticationRecords: IPartialRecord[], codename: string) =>
-            authenticationRecords
-                .concat(
-                    this.createRecordsFromAuthenticationDescription(
-                        this.items[codename] as ISecurityScheme,
-                    ),
-                );
-
-    private createRecordsFromAuthenticationDescription = (authentication: ISecurityScheme): IPartialRecord[] => {
-        const descriptionItems = getDescriptionItems(authentication.description, this.items);
-
-        const securityItemRecord: IPartialRecord =
-            createGenericRecordFromDescriptionContent(authentication, 'Authentication');
-
-        return [securityItemRecord]
-            .concat(descriptionItems
-                .map(createGenericDescriptionRecord(authentication)),
-            )
     };
 
     private processCategories = (categoryCodenames: string[]): IPartialRecord[] =>
