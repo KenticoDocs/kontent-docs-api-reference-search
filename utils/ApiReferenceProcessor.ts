@@ -51,7 +51,8 @@ export class ApiReferenceProcessor {
                 id,
                 section: 'API',
                 title,
-            }));
+            }))
+            .filter((record) => record.content);
     };
 
     private processCategories = (categoryCodenames: string[]): IPartialRecord[] =>
