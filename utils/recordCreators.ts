@@ -1,7 +1,6 @@
 import {
     ICategory,
     IPathOperation,
-    IResponse,
     ISecurityScheme,
     ISystemAttributes,
     IZapiSpecification,
@@ -39,13 +38,3 @@ export const createSpecificationDescriptionRecord = ({ codename, title }: IZapiS
         heading: title,
         objectID: descriptionItem.id,
     });
-
-export const createResponseDescriptionContentRecord = (
-    response: IResponse,
-    { codename, name }: IPathOperation,
-): IPartialRecord => ({
-    codename,
-    content: `${response.httpStatus[0]} ${striptags(response.description)}`,
-    heading: name,
-    objectID: `${codename}##${response.id}`,
-});
