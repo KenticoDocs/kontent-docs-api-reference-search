@@ -3,12 +3,10 @@ import {
     ICodeSamples,
     IPathOperation,
     IRecord,
-    IResponse,
     ISystemAttributes,
     IZapiSpecification,
 } from 'cloud-docs-shared-code';
 import { IGenericItems } from '../kcd-api-reference-search-update';
-import { getChildCodenamesFromRichText } from './helpers';
 import {
     getCodeSampleItemsFromCodeSamples,
     getDescriptionItems,
@@ -16,7 +14,6 @@ import {
 import {
     createGenericDescriptionRecord,
     createGenericRecordFromDescriptionContent,
-    createResponseDescriptionContentRecord,
     createSpecificationDescriptionRecord,
 } from './recordCreators';
 
@@ -107,10 +104,7 @@ export class ApiReferenceProcessor {
                     [] as ISystemAttributes[]),
             )
             .map(createGenericDescriptionRecord(pathOperation))
-            .concat(
-                this.processResponses(pathOperation),
-                [descriptionContentRecord],
-            );
+            .concat([descriptionContentRecord]);
     };
 
     private concatCodeSampleItems = () =>
@@ -118,38 +112,6 @@ export class ApiReferenceProcessor {
             codeSampleItems.concat(
                 getCodeSampleItemsFromCodeSamples(this.items[codeSampleCodename] as ICodeSamples, this.items),
             );
-
-    private createResponseRecords = (pathOperation: IPathOperation) =>
-        (descriptionRecords: IPartialRecord[], responseItem: IResponse): IPartialRecord[] =>
-            descriptionRecords.concat(
-                this.createRecordsFromResponseDescription(
-                    responseItem,
-                    pathOperation,
-                ),
-            );
-
-    private processResponses = (pathOperation: IPathOperation): IPartialRecord[] =>
-        getChildCodenamesFromRichText(pathOperation.responses)
-            .map((codename) => this.items[codename] as IResponse)
-            .reduce(
-                this.createResponseRecords(pathOperation),
-                [] as IPartialRecord[],
-            );
-
-    private createRecordsFromResponseDescription = (
-        response: IResponse,
-        pathOperation: IPathOperation,
-    ): IPartialRecord[] => {
-        const descriptionItems = getDescriptionItems(response.description, this.items);
-        const descriptionRecord = createResponseDescriptionContentRecord(
-            response,
-            pathOperation,
-        );
-
-        return descriptionItems
-            .map(createGenericDescriptionRecord(pathOperation))
-            .concat([descriptionRecord]);
-    };
 
     private createRecordsFromSpecificationDescription = (specification: IZapiSpecification): IPartialRecord[] =>
         getDescriptionItems(specification.description, this.items)
