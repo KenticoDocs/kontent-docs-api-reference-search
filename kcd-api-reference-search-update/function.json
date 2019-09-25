@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "type": "eventGridTrigger",
+      "name": "eventGridEvent",
+      "direction": "in"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../dist/kcd-api-reference-search-update/index.js"
+}
