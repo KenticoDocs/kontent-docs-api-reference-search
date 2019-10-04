@@ -802,13 +802,13 @@ cliui@^4.0.0:
     strip-ansi "^4.0.0"
     wrap-ansi "^2.0.0"
 
-cloud-docs-shared-code@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/cloud-docs-shared-code/-/cloud-docs-shared-code-3.2.5.tgz#255e9a8eda000619baf1edf4b3acb2a9d239188e"
-  integrity sha512-xyptPe6f2P7j7BEycZU31shzCwqG6Mc5eBwWvopDM/Lpr8w1ZYNKr7WmM4bHo32c1TSZCUpfab0673E9f1YKpg==
+cloud-docs-shared-code@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/cloud-docs-shared-code/-/cloud-docs-shared-code-3.3.1.tgz#cbd7f387cd5318e3a1570420ed909f999b83397e"
+  integrity sha512-Fh/zIpqdIPr0BZ2cVUYARHEfskBT+gsWrhwZ9AS5hm1FjIPQ/m3BKOAc0HhOCbsm872+6iGmOerul+H5l2V/zA==
   dependencies:
     "@azure/storage-blob" "10.4.0"
-    kentico-cloud-delivery "6.0.0-rc.3"
+    kentico-cloud-delivery "6.0.0-rc.5"
     rxjs "6.5.2"
 
 co@^4.6.0:
@@ -2236,10 +2236,10 @@ kentico-cloud-core@1.7.1:
   dependencies:
     axios "0.19.0"
 
-kentico-cloud-delivery@6.0.0-rc.3:
-  version "6.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/kentico-cloud-delivery/-/kentico-cloud-delivery-6.0.0-rc.3.tgz#d398d48f9d658d88db4d9d0cf647ed2f718ee26d"
-  integrity sha512-RiAECyS3QM8u3l/PK2HaOrCbBfCWccwtQElnjC3GpA9SGpzuN2iNfMBFG43YEZ3BRL+fKKhdBA/Z7iRjn5sMVQ==
+kentico-cloud-delivery@6.0.0-rc.5:
+  version "6.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/kentico-cloud-delivery/-/kentico-cloud-delivery-6.0.0-rc.5.tgz#aae688866d17abf2589f32a230aacbfa64ffe99c"
+  integrity sha512-hK5r3/4NHQwo512J84rtwyhlwTiPWrTfsRP6dz2NZX5HjRbudV8z8ssAOSRaiQbgmwXVinkUDnDnUpEeq/Em4w==
   dependencies:
     kentico-cloud-core "1.7.1"
     parse5 "5.1.0"

@@ -39,7 +39,7 @@ export const getContentOfItem = (item: ISystemAttributes): string => {
     }
 };
 
-export const transformPreprocessedDataToRecords = (blob: IPreprocessedData, initialize: boolean): IItemRecordsBlob => {
+export const transformPreprocessedDataToRecords = (blob: IPreprocessedData): IItemRecordsBlob => {
     const specification = blob.items[blob.zapiSpecificationCodename] as IZapiSpecification;
     const apiReferenceProcessor = new ApiReferenceProcessor(blob.items as IGenericItems);
 
@@ -48,7 +48,7 @@ export const transformPreprocessedDataToRecords = (blob: IPreprocessedData, init
     return {
         codename: specification.codename,
         id: specification.id,
-        initialize,
         itemRecords,
+        operation: blob.operation,
     };
 };

@@ -2,14 +2,14 @@ import { ContainerURL } from '@azure/storage-blob';
 import {
     Configuration,
     IItemRecordsBlob,
+    Operation,
 } from 'cloud-docs-shared-code';
-import { ReferenceOperation } from 'cloud-docs-shared-code/reference/preprocessedModels';
 
 const BlobStorage = require('@azure/storage-blob');
 
 export const storeReferenceDataToBlobStorage = async (
     dataBlob: IItemRecordsBlob,
-    operation: ReferenceOperation,
+    operation: Operation,
 ): Promise<void> => {
     const containerUrl = getContainerUrl();
     const blobName = getBlobName(dataBlob.id, operation);
@@ -38,13 +38,14 @@ const getContainerUrl = (): ContainerURL => {
     return BlobStorage.ContainerURL.fromServiceURL(serviceUrl, Configuration.keys.azureContainerName);
 };
 
-export const getBlobName = (id: string, operation: ReferenceOperation): string => {
+export const getBlobName = (id: string, operation: Operation): string => {
     switch (operation) {
-        case ReferenceOperation.Update:
-        case ReferenceOperation.Initialize: {
+        case Operation.Update:
+        case Operation.Delete:
+        case Operation.Initialize: {
             return `${id}.json`;
         }
-        case ReferenceOperation.Preview: {
+        case Operation.Preview: {
             return `${id}-preview.json`;
         }
         default: {
