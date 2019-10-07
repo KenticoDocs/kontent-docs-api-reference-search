@@ -6,6 +6,7 @@ import {
     IRecord,
     ISystemAttributes,
     IZapiSpecification,
+    Section,
 } from 'cloud-docs-shared-code';
 import {
     HTMLElement,
@@ -50,5 +51,6 @@ export const transformPreprocessedDataToRecords = (blob: IPreprocessedData): IIt
         id: specification.id,
         itemRecords,
         operation: blob.operation,
+        section: Section.Api,
     };
 };

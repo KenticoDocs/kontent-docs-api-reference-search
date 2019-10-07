@@ -5,6 +5,7 @@ import {
     IRecord,
     ISystemAttributes,
     IZapiSpecification,
+    Section,
 } from 'cloud-docs-shared-code';
 import { IGenericItems } from '../kcd-api-reference-search-update';
 import {
@@ -46,7 +47,7 @@ export class ApiReferenceProcessor {
             .map((record) => ({
                 ...record,
                 id,
-                section: 'API',
+                section: Section.Api,
                 title,
             }))
             .filter((record) => record.content);
