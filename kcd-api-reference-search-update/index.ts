@@ -12,6 +12,7 @@ import {
     ISystemAttributes,
     IZapiSpecification,
     Operation,
+    Section,
 } from 'cloud-docs-shared-code';
 import { storeReferenceDataToBlobStorage } from '../external/blobManager';
 import { transformPreprocessedDataToRecords } from '../utils/helpers';
@@ -77,4 +78,5 @@ const getDeleteRecordsBlob = (
     id: zapiSpecificationId,
     itemRecords: [],
     operation,
+    section: Section.Api,
 });
