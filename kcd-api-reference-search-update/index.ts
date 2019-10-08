@@ -7,10 +7,12 @@ import {
     Configuration,
     getBlobFromStorage,
     IBlobEventGridEvent,
+    IItemRecordsBlob,
     IPreprocessedData,
     ISystemAttributes,
     IZapiSpecification,
-    ReferenceOperation,
+    Operation,
+    Section,
 } from 'cloud-docs-shared-code';
 import { storeReferenceDataToBlobStorage } from '../external/blobManager';
 import { transformPreprocessedDataToRecords } from '../utils/helpers';
@@ -32,16 +34,32 @@ export const eventGridTrigger: AzureFunction = async (
         Configuration.keys.azureStorageKey,
     );
 
-    if (blob.operation === ReferenceOperation.Preview) {
-        return;
-    }
+    await processBlobWithRecords(blob, isTest);
+};
 
-    const initialize = blob.operation === ReferenceOperation.Initialize;
-    if (initialize) {
-        await clearIndex(isTest, blob);
-    }
+const processBlobWithRecords = async (blob: IPreprocessedData, isTest: boolean) => {
+    let recordsBlob: IItemRecordsBlob;
 
-    const recordsBlob = transformPreprocessedDataToRecords(blob, initialize);
+    switch (blob.operation) {
+        case Operation.Preview:
+            return;
+
+        case Operation.Initialize:
+            await clearIndex(isTest, blob);
+            recordsBlob = transformPreprocessedDataToRecords(blob);
+            break;
+
+        case Operation.Update:
+            recordsBlob = transformPreprocessedDataToRecords(blob);
+            break;
+
+        case Operation.Delete:
+            recordsBlob = getDeleteRecordsBlob(blob);
+            break;
+
+        default:
+            throw Error('Unsupported operation');
+    }
 
     await storeReferenceDataToBlobStorage(recordsBlob, blob.operation);
 };
@@ -52,3 +70,13 @@ const clearIndex = async (isTest: boolean, blob: IPreprocessedData): Promise<voi
 
     await axios.get(`${clearIndexUrl}&id=${apiSpecificationId}`);
 };
+
+const getDeleteRecordsBlob = (
+    {zapiSpecificationId, zapiSpecificationCodename, operation}: IPreprocessedData,
+): IItemRecordsBlob => ({
+    codename: zapiSpecificationCodename,
+    id: zapiSpecificationId,
+    itemRecords: [],
+    operation,
+    section: Section.Api,
+});

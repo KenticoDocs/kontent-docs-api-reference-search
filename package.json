@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "0.19.0",
-    "cloud-docs-shared-code": "3.2.5",
+    "cloud-docs-shared-code": "3.3.3",
     "node-html-parser": "1.1.16",
     "striptags": "3.1.1"
   },
