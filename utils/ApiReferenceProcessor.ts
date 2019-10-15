@@ -6,7 +6,7 @@ import {
     ISystemAttributes,
     IZapiSpecification,
     Section,
-} from 'cloud-docs-shared-code';
+} from 'kontent-docs-shared-code';
 import { IGenericItems } from '../kcd-api-reference-search-update';
 import {
     getCodeSampleItemsFromCodeSamples,
