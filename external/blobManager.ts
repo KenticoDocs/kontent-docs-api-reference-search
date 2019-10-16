@@ -3,7 +3,7 @@ import {
     Configuration,
     IItemRecordsBlob,
     Operation,
-} from 'cloud-docs-shared-code';
+} from 'kontent-docs-shared-code';
 
 const BlobStorage = require('@azure/storage-blob');
 

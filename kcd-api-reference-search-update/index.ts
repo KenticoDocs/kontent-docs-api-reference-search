@@ -13,7 +13,7 @@ import {
     IZapiSpecification,
     Operation,
     Section,
-} from 'cloud-docs-shared-code';
+} from 'kontent-docs-shared-code';
 import { storeReferenceDataToBlobStorage } from '../external/blobManager';
 import { transformPreprocessedDataToRecords } from '../utils/helpers';
 

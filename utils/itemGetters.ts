@@ -1,7 +1,7 @@
 import {
     ICodeSamples,
     ISystemAttributes,
-} from 'cloud-docs-shared-code';
+} from 'kontent-docs-shared-code';
 import { IGenericItems } from '../kcd-api-reference-search-update';
 import { getChildCodenamesFromRichText } from './helpers';
 

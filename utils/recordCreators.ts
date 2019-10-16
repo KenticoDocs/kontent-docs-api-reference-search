@@ -4,7 +4,7 @@ import {
     ISecurityScheme,
     ISystemAttributes,
     IZapiSpecification,
-} from 'cloud-docs-shared-code';
+} from 'kontent-docs-shared-code';
 import * as striptags from 'striptags';
 import { IPartialRecord } from './ApiReferenceProcessor';
 import { getContentOfItem } from './helpers';

@@ -1,5 +1,5 @@
 {
-  "name": "cloud-docs-api-reference-search",
+  "name": "kontent-docs-api-reference-search",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "0.19.0",
-    "cloud-docs-shared-code": "3.3.3",
+    "kontent-docs-shared-code": "4.0.0",
     "node-html-parser": "1.1.16",
     "striptags": "3.1.1"
   },
