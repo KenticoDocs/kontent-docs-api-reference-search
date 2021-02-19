@@ -23,6 +23,7 @@ export interface IPartialRecord {
     readonly content: string;
     readonly heading: string;
     readonly objectID: string;
+    readonly isCodeSample: boolean;
 }
 
 export class ApiReferenceProcessor {

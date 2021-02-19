@@ -1,11 +1,11 @@
 {
-    "Values": {
-        "KC.ProjectId": "",
-        "KC.SecuredApiKey": "",
-        "AzureWebJobsStorage": "",
-        "Azure.StorageAccountName": "",
-        "Azure.ContainerName": "",
-        "Azure.ClearIndexUrl": ""
-    },
-    "IsEncrypted": false
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=account;AccountKey=key",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "Azure.ClearIndexUrl": "url",
+    "Azure.ContainerName": "algolia-item-records",
+    "Azure.StorageAccountName": "kcddev",
+     "Azure.StorageKey": ""
+  }
 }

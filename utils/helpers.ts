@@ -16,6 +16,13 @@ import * as striptags from 'striptags';
 import { IGenericItems } from '../kcd-api-reference-search-update';
 import { ApiReferenceProcessor } from './ApiReferenceProcessor';
 
+export const isCodeSample = (contentType: string): boolean => {
+    if (contentType === 'code_sample') {
+        return true;
+    }
+    return false;
+}
+
 export const getChildCodenamesFromRichText = (content: string): string[] => {
     const root = parse(content) as HTMLElement;
     const richTextParagraphs = root.querySelectorAll('p');

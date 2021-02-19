@@ -13,18 +13,18 @@
     "tslint": "tslint --project tsconfig.json"
   },
   "dependencies": {
-    "axios": "0.19.0",
-    "kontent-docs-shared-code": "4.0.0",
+    "axios": "0.21.1",
+    "kontent-docs-shared-code": "4.0.4",
     "node-html-parser": "1.1.16",
     "striptags": "3.1.1"
   },
   "devDependencies": {
-    "@azure/functions": "1.0.2-beta2",
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.5",
-    "jest": "24.8.0",
-    "ts-jest": "24.0.2",
-    "tslint": "5.18.0",
-    "typescript": "3.3.3"
+    "@azure/functions": "1.2.3",
+    "@types/jest": "26.0.20",
+    "@types/node": "14.14.30",
+    "jest": "26.6.3",
+    "ts-jest": "26.5.1",
+    "tslint": "6.1.3",
+    "typescript": "4.1.5"
   }
 }
