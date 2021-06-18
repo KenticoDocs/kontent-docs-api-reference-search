@@ -16,7 +16,7 @@
     "axios": "0.21.1",
     "kontent-docs-shared-code": "4.0.4",
     "node-html-parser": "1.1.16",
-    "striptags": "3.1.1"
+    "striptags": "3.2.0"
   },
   "devDependencies": {
     "@azure/functions": "1.2.3",
